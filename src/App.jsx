@@ -5,6 +5,7 @@ function App() {
   const [numberAllowed, setNumberAllowed] = useState(false)
   const [characterAllowed, setCharacteAllowed] = useState(false);
   const [password, setPassword] = useState("sbfkhi");
+  const [btn,setBtn]=useState('Copy')
 
   const passwordRef = useRef(null)
 
@@ -34,9 +35,11 @@ function App() {
   const copyPassword = () => {
     passwordRef.current?.select();
     window.navigator.clipboard.writeText(password)
+    setBtn('Copied')
     setTimeout(() => {
-      alert('copied successfully!')
-    },1000);
+      setBtn('Copy')
+    },2000);
+
   }
 
   return (
@@ -54,7 +57,7 @@ function App() {
                 className='text-black outline-0 w-full rounded-l-lg p-1 box-border text-sm'
                 readOnly
                 ref={passwordRef} />
-              <button className='bg-blue-600 px-1 rounded-r-lg text-sm' onClick={() => copyPassword()}>Copy</button>
+              <button className='bg-blue-600 px-1 rounded-r-lg text-sm' onClick={() => copyPassword()} >{btn}</button>
             </div>
 
 
